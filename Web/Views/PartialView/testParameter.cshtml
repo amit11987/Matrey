@@ -1,0 +1,45 @@
+﻿@model Model.Test
+    <table style="border-collapse: collapse;">
+        @for (int i = 1; i <= @ViewBag.NumberOfParametersRequired; i++)
+        {
+            if (i == 1)
+            {
+              <tr>
+               <th>
+                    @Html.Label("Parameter")
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.TestParameters[0].Caption)
+                </th>
+                  <th>
+                    @Html.LabelFor(model => model.TestParameters[0].TPID)
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.TestParameters[0].Description)
+                </th>
+                <th> 
+                    @Html.LabelFor(model => model.TestParameters[0].FieldTypeID)
+                </th>  
+              </tr>
+            }   
+            <tr>
+                <td>
+                    @Html.Label("Parameter " + i)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.TestParameters[i].Caption)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.TestParameters[i].TPID)
+                </td>
+                <td>
+                     @Html.TextAreaFor(model => model.TestParameters[i].Description, new { rows = "1", cols = "50" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.TestParameters[i].FieldTypeID,(SelectList)@ViewBag.FieldTypes,new {@class = "dropdown-medium fieldType" })
+                </td>
+            </tr> 
+        }
+    </table>
+
+

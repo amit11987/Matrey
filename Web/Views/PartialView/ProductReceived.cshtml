@@ -1,0 +1,43 @@
+﻿@model Model.SampleReceive
+    <table style="border-collapse: collapse;">
+        @for (int i = 1; i <= @ViewBag.NoOfProductReceived; i++)
+        {
+            if (i == 1)
+            {
+              <tr>
+               <th>
+                   <span>S.no.</span>
+                </th>
+                <th>
+                    @Html.LabelFor(model =>  model.lstProductRecieved[0].ProductID)
+                </th>
+                  <th>
+                    @Html.LabelFor(model => model.lstProductRecieved[0].Quantity, new { @class="ProductName"})
+                </th>
+                <th>
+                   @Html.LabelFor(model => model.lstProductRecieved[0].UOMID)
+                </th>
+              </tr>
+            }   
+            <tr>
+                <td>
+                    @Html.Label(i.ToString())
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.lstProductRecieved[i].ProductID,(SelectList)@ViewBag.Products,new {@class = "dropdown-medium" }) 
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.lstProductRecieved[i].Quantity, new {@class="allownumericwithdecimal"})
+                </td>
+                <td>
+                     @Html.DropDownListFor(model => model.lstProductRecieved[i].UOMID,(SelectList)@ViewBag.UOMS,new {@class = "dropdown-medium" })
+                </td>
+            </tr> 
+        }
+    </table>
+
+
+
+    
+
+

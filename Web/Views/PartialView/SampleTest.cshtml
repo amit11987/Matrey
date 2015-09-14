@@ -1,0 +1,37 @@
+﻿@model Model.SampleReceive
+    <table style="border-collapse: collapse;">
+        @for (int i = 1; i <= @ViewBag.NoofTestRequired; i++)
+        {
+            if (i == 1)
+            {
+              <tr>
+               <th>
+                   <span>S.no.</span>
+                </th>
+                <th>
+                    @Html.LabelFor(model =>  model.lstSampleTest[0].TestID)
+                </th>
+                  <th>
+                    @Html.LabelFor(model => model.lstSampleTest[0].Repetition, new { @class="ProductName"})
+                </th>
+              </tr>
+            }   
+            <tr>
+                <td>
+                    @Html.Label(i.ToString())
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.lstSampleTest[i].TestID,(SelectList)@ViewBag.Tests,new {@class = "dropdown-medium" }) 
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.lstSampleTest[i].Repetition)
+                </td>
+            </tr> 
+        }
+    </table>
+
+
+
+    
+
+

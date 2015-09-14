@@ -1,0 +1,66 @@
+﻿@model Model.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    
+
+     <div class="form-horizontal">   
+        <h2 class="red">Create Product</h2>
+         <hr />
+         @if (@ViewBag.ResultMessage != null &&((string)@ViewBag.ResultMessage).Contains("Error"))
+         {
+            <p class="label-warning">@ViewBag.ResultMessage</p>
+         }
+         else if (@ViewBag.ResultMessage != null)
+         {
+             <p class="label-success">@ViewBag.ResultMessage</p>
+         }
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductName, new { @class = "control-label col-md-2 red" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductName)
+                @Html.ValidationMessageFor(model => model.ProductName)
+            </div>
+        </div>
+          <div class="form-group">
+            @Html.LabelFor(model => model.PID, new { @class = "control-label col-md-2 red" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PID)
+                @Html.ValidationMessageFor(model => model.PID)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductDescription, new { @class = "control-label col-md-2 red" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.ProductDescription,new {rows="6", cols="50"})
+                @Html.ValidationMessageFor(model => model.ProductDescription)
+            </div>
+        </div>
+        <p>
+            <input id="btnCreateProduct" type="submit" value="Create" />
+             <input id="btnResetProduct" type="Button" value="Reset" class="cancel"  />
+        </p>
+   </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnResetProduct").click(function () {
+            $('input[type="text"]').val('');
+            $('#ProductDescription').val('');
+            $(".validation-summary-errors").css("display", "none");
+            $(".input-validation-error").removeClass("input-validation-error");
+            $(".field-validation-error").children().remove();
+            $("P.label-success").remove();
+            $("P.label-warning").remove();
+        });
+    });
+</script>
+}

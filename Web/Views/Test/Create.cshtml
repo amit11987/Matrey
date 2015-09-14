@@ -1,0 +1,155 @@
+﻿@model Model.Test
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+     <div class="form-horizontal">   
+        <h2>Test Creation</h2>
+           <p id="resultMessage"></p>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestName, new { @class = "control-label col-md-3 red" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.TestName)
+                @Html.ValidationMessageFor(model => model.TestName)
+            </div>
+        </div>
+       <div class="form-group">
+            @Html.LabelFor(model => model.TID, new { @class = "control-label col-md-3 red" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(model => model.TID)
+                @Html.ValidationMessageFor(model => model.TID)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TestDescription, new { @class = "control-label col-md-3 red" })
+            <div class="col-md-9">
+                @Html.TextAreaFor(model => model.TestDescription, new { rows = "6", cols = "50" })
+                @Html.ValidationMessageFor(model => model.TestDescription)
+            </div>
+        </div>
+          <div class="form-group">
+            @Html.LabelFor(model => model.NumberOfParametersRequired, new { @class = "control-label col-md-3 red" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(model => model.NumberOfParametersRequired, Enumerable.Range(1, (int)@ViewBag.MaxNoOfTestParameter).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString(), Selected = (i == (int)@ViewBag.NumberOfParametersRequired) }), new { @class = "dropdown-medium" })
+                @Html.ValidationMessageFor(model => model.NumberOfParametersRequired)
+            </div>
+        </div>
+       <div id="view" class="form-group">
+            @Html.Partial("~/Views/PartialView/testParameter.cshtml")
+         </div>
+        <p>
+            <input id="btnCreateTest" type="button" value="Create"   />
+            <input id="btnResetTest" type="button" value="Reset" class="cancel"  />
+        </p>
+   </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    /* This is change event for your dropdownlist */
+    $(document).ready(function () {
+        $('#NumberOfParametersRequired').change(function () { 
+            CreateTestParameterView($(this).val());
+        });
+
+        function CreateTestParameterView(id) {
+            /* Request the partial view with .get request. */
+            $.get('/Test/Renderview/' +id, function (data) {
+                /* data is the pure html returned from action method, load it to your page */
+                $('#view').html(data);
+                /* little fade in effect */
+                $('#view').fadeIn('fast');
+            });
+        }
+
+        $("#btnResetTest").click(function () {
+            $('input[type="text"]').val('');
+            $("textarea").val("");
+            $(".validation-summary-errors").css("display", "none");
+            $(".input-validation-error").removeClass("input-validation-error");
+            $("#resultMessage").removeClass("label-success").removeClass("label-warning").text('').hide();
+            $(".field-validation-error").children().remove();
+            $("#NumberOfParametersRequired").val('@ViewBag.NumberOfParametersRequired');
+            $(".fieldType").val('0')
+            CreateTestParameterView('@ViewBag.NumberOfParametersRequired');
+        });
+
+        $("#btnCreateTest").click(function () {
+            if (validate()) {
+                var test = {};
+                test.TestName = $("#TestName").val();
+                test.TID = $("#TID").val();
+                test.TestDescription = $("#TestDescription").val();
+                test.NumberOfParametersRequired = $("#NumberOfParametersRequired").val();
+                test.TestParameters = [];
+                for (var i = 1; i <= test.NumberOfParametersRequired; i++) {
+                    var testparameter = {
+                        Caption: $("#TestParameters_" + i + "__Caption").val(),
+                        TPID: $("#TestParameters_" + i + "__TPID").val(),
+                        Description: $("#TestParameters_" + i + "__Description").val(),
+                        FieldTypeID: $("#TestParameters_" + i + "__FieldTypeID").val()
+                    }
+                    test.TestParameters.push(testparameter);
+                }
+
+                $.ajax({
+                    url: '/Test/Create',
+                    dataType: "json",
+                    type: "POST",
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(test),
+                    async: true,
+                    processData: false,
+                    cache: false,
+                    success: function (data) {
+                        CreateTestParameterView('@ViewBag.NumberOfParametersRequired');
+                        $("#NumberOfParametersRequired").val('@ViewBag.NumberOfParametersRequired');
+                        $('input[type="text"]').val('');
+                        $("textarea").val("");
+                        $("#resultMessage").addClass("label-success").show().text('Record inserted successfully');
+                    },
+                    error: function (xhr) {
+                        if (xhr.status == 200) {
+                            CreateTestParameterView('@ViewBag.NumberOfParametersRequired');
+                            $("#NumberOfParametersRequired").val('@ViewBag.NumberOfParametersRequired');
+                            $('input[type="text"]').val('');
+                            $("textarea").val("");
+                            $("#resultMessage").addClass("label-success").show().text('Record inserted successfully ');
+                        }
+                        else {
+                            $("#resultMessage").addClass("label-warning").show().text('Error occured ');
+                        }
+                    }
+                })
+            }
+
+        });
+
+    });
+
+    function validate() {
+        //valid() not only tells us whether the form is valid but 
+        //also ensures that errors are shown !!!
+        if ($('form').valid()) {
+            //if the form is valid we may need to hide previously displayed messages
+            $(".validation-summary-errors").css("display", "none");
+            $(".input-validation-error").removeClass("input-validation-error");
+            return true;
+        }
+        else {
+            //the form is not valide and because we are doing this all manually we also have to
+            //show the validation summary manually 
+            $(".validation-summary-errors").css("display", "block");
+            return false;
+        }
+    }
+</script>
+
+}
