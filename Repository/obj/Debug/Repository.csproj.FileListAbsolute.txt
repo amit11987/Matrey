@@ -11,3 +11,16 @@ F:\Maitry\Solution\Repository\obj\Debug\Repository.csprojResolveAssemblyReferenc
 F:\Maitry\Solution\Repository\obj\Debug\Repository.dll
 F:\Maitry\Solution\Repository\obj\Debug\Repository.pdb
 F:\Maitry\Solution\Repository\bin\Debug\System.Web.Mvc.dll
+F:\Matrey\Repository\bin\Debug\Repository.dll.config
+F:\Matrey\Repository\bin\Debug\Repository.dll
+F:\Matrey\Repository\bin\Debug\Repository.pdb
+F:\Matrey\Repository\bin\Debug\EntityFramework.dll
+F:\Matrey\Repository\bin\Debug\EntityFramework.SqlServer.dll
+F:\Matrey\Repository\bin\Debug\Model.dll
+F:\Matrey\Repository\bin\Debug\System.Web.Mvc.dll
+F:\Matrey\Repository\bin\Debug\EntityFramework.xml
+F:\Matrey\Repository\bin\Debug\EntityFramework.SqlServer.xml
+F:\Matrey\Repository\bin\Debug\Model.pdb
+F:\Matrey\Repository\obj\Debug\Repository.csprojResolveAssemblyReference.cache
+F:\Matrey\Repository\obj\Debug\Repository.dll
+F:\Matrey\Repository\obj\Debug\Repository.pdb

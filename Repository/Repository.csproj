@@ -53,6 +53,8 @@
     <Compile Include="Common\IGenericRepository.cs" />
     <Compile Include="Common\IUnitOfWork.cs" />
     <Compile Include="Common\UnitOfWork.cs" />
+    <Compile Include="TestParameterRepository.cs" />
+    <Compile Include="Interface\ITestParameterRepository.cs" />
     <Compile Include="Interface\ISampleReceiving.cs" />
     <Compile Include="SampleReceivingRepository.cs" />
     <Compile Include="UOMRepository.cs" />

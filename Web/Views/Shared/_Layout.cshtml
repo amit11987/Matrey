@@ -17,9 +17,11 @@
                 <div class="float-right">
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Test", "Create", "Test")</li>
+                            <li>@Html.ActionLink("Product", "Create", "Product")</li>
+                            <li>@Html.ActionLink("SOP", "Create", "SOP")</li>
+                            <li>@Html.ActionLink("UOM", "Create", "UOM")</li>
+                            <li>@Html.ActionLink("SampleReceiving", "Create", "SampleReceiving")</li>
                         </ul>
                     </nav>
                 </div>
@@ -38,8 +40,9 @@
                 </div>
             </div>
         </footer>
-
         @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+        <script src="~/Scripts/Comman.js"></script>
         @RenderSection("scripts", required: false)
     </body>
 </html>

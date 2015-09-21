@@ -15,8 +15,8 @@ namespace Model
         public EFContext()
             : base("Name=EFContext")
         {
-            Database.SetInitializer<EFContext>(new CreateDatabaseIfNotExists<EFContext>());
-            Database.SetInitializer<EFContext>(new DropCreateDatabaseIfModelChanges<EFContext>());
+            //Database.SetInitializer<EFContext>(new CreateDatabaseIfNotExists<EFContext>());
+            //Database.SetInitializer<EFContext>(new DropCreateDatabaseIfModelChanges<EFContext>());
         }
       
         public DbSet<Product> Product{ get; set; }

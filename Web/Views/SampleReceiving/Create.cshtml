@@ -54,7 +54,6 @@
     </div>
 }
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
         /* This is change event for your dropdownlist */
         $(document).ready(function () {
@@ -121,22 +120,21 @@
                     success: function (data) {
                         CreateProductReceivedView('@ViewBag.NoOfProductReceived');
                         CreateSampleTestView('@ViewBag.NoOfTestRequired');
-                        $("#NoOfProductReceived").html('@ViewBag.NoOfProductReceived');
-                        $("#NoOfTestRequired").html('@ViewBag.NoOfTestRequired');
                         $('input[type="text"]').val('');
                         $('input[type="datetime"]').val('');
-                        $("textarea").val("");
+                        $("#NoOfProductReceived").val('@ViewBag.NoOfProductReceived');
+                        $("#NoOfTestRequired").val('@ViewBag.NoOfTestRequired');
                         $("#resultMessage").addClass("label-success").show().text('Record inserted successfully ');
                     },
                     error: function (xhr) {
                         if (xhr.status == 200) {
-                            $("#NoOfProductReceived").val('@ViewBag.NoOfProductReceived');
-                            $("#NoOfTestRequired").val('@ViewBag.NoOfTestRequired');
                             CreateProductReceivedView('@ViewBag.NoOfProductReceived');
                             CreateSampleTestView('@ViewBag.NoOfTestRequired')
                             $('input[type="text"]').val('');
                             $('input[type="datetime"]').val('');
                             $("textarea").val("");
+                            $("#NoOfProductReceived").val('@ViewBag.NoOfProductReceived');
+                            $("#NoOfTestRequired").val('@ViewBag.NoOfTestRequired');
                             $("#resultMessage").addClass("label-success").show().text('Record inserted successfully ');
                         }
                         else {
@@ -180,23 +178,6 @@
                 /* little fade in effect */
                 $('#dvSampleTest').fadeIn('fast');
             });
-        }
-       
-        function validate() {
-            //valid() not only tells us whether the form is valid but 
-            //also ensures that errors are shown !!!
-            if ($('form').valid()) {
-                //if the form is valid we may need to hide previously displayed messages
-                $(".validation-summary-errors").css("display", "none");
-                $(".input-validation-error").removeClass("input-validation-error");
-                return true;
-            }
-            else {
-                //the form is not valide and because we are doing this all manually we also have to
-                //show the validation summary manually 
-                $(".validation-summary-errors").css("display", "block");
-                return false;
-            }
         }
     </script>
 }

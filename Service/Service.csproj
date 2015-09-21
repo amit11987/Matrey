@@ -48,6 +48,8 @@
     <Compile Include="Common\EntityService.cs" />
     <Compile Include="Common\IEntityService.cs" />
     <Compile Include="Common\IService.cs" />
+    <Compile Include="TestParameterService.cs" />
+    <Compile Include="interface\ITestParameterService.cs" />
     <Compile Include="interface\ISampleReceivingService.cs" />
     <Compile Include="SampleReceivingService.cs" />
     <Compile Include="UOMService.cs" />

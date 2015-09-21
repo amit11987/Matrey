@@ -37,13 +37,19 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Create(SampleReceive test)
         {
-            if (ModelState.IsValid)
+            try
             {
-                SampleReceivingService.Create(test);
+                if (ModelState.IsValid)
+                {
+                    SampleReceivingService.Create(test);
+                }
+                ViewBag.NoOfProductReceived = Convert.ToInt32(ConfigurationManager.AppSettings["NoOfProductReceived"]);
+                ViewBag.NoofTestRequired = Convert.ToInt32(ConfigurationManager.AppSettings["NoofTestRequired"]);
+                fillDropdown();
             }
-            ViewBag.NoOfProductReceived = Convert.ToInt32(ConfigurationManager.AppSettings["NoOfProductReceived"]);
-            ViewBag.NoofTestRequired =  Convert.ToInt32(ConfigurationManager.AppSettings["NoofTestRequired"]);
-            fillDropdown();
+            catch
+            {
+            }
             return View();
         }
 

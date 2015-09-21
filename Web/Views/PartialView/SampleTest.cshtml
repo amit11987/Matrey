@@ -24,7 +24,7 @@
                     @Html.DropDownListFor(model => model.lstSampleTest[i].TestID,(SelectList)@ViewBag.Tests,new {@class = "dropdown-medium" }) 
                 </td>
                 <td>
-                    @Html.TextBoxFor(model => model.lstSampleTest[i].Repetition)
+                    @Html.TextBoxFor(model => model.lstSampleTest[i].Repetition, new  {@class="digit" })
                 </td>
             </tr> 
         }

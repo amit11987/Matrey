@@ -47,7 +47,7 @@
 }
 
 @section Scripts {
-     @Scripts.Render("~/bundles/jqueryval")
+    
 <script type="text/javascript">
     $(document).ready(function () {
         LoadUOM();
@@ -63,15 +63,15 @@
         });
 
         $("#StandardUOM").change(function () {
-            $("#spMapping").text("[1 " +$("#StandardUOM option:selected").text()+ " ]");
+            $("#spMapping").text("=[1 " +$("#StandardUOM option:selected").text()+ " ]");
             if ($("#UOMName").val() != "") {
-                $("#lblUOMMapping").text("[1 " + $("#UOMName").val() + " ]");
+                $("#lblUOMMapping").text("[1 " + $("#UOMName").val() + " ] *");
             }
         });
 
       
         $("#UOMName").keyup(function () {
-            $("#UOMName").val() != "" ? $("#lblUOMMapping").text("[1 " + $("#UOMName").val() + " ]") : $("#lblUOMMapping").text("1 [UOM Name]*");
+            $("#UOMName").val() != "" ? $("#lblUOMMapping").text("[1 " + $("#UOMName").val() + " ] *") : $("#lblUOMMapping").text("1 [UOM Name]*");
         });
 
        
@@ -128,28 +128,11 @@
         $("#dvStandardUOM").show();
         $("#dvUOMMapping").show();
         $("#lblUOMMapping").text("1 [UOM Name]*");
-        $("#spMapping").text("1[Standard UOM]");
+        $("#spMapping").text("=1[Standard UOM]");
         $("#StandardUOM").val("0");
         $(".validation-summary-errors").css("display", "none");
         $(".input-validation-error").removeClass("input-validation-error");
         $(".field-validation-error").children().remove();
-    }
-
-    function validate() {
-        //valid() not only tells us whether the form is valid but 
-        //also ensures that errors are shown !!!
-        if ($('form').valid()) {
-            //if the form is valid we may need to hide previously displayed messages
-            $(".validation-summary-errors").css("display", "none");
-            $(".input-validation-error").removeClass("input-validation-error");
-            return true;
-        }
-        else {
-            //the form is not valide and because we are doing this all manually we also have to
-            //show the validation summary manually 
-            $(".validation-summary-errors").css("display", "block");
-            return false;
-        }
     }
 
     function LoadUOM() {

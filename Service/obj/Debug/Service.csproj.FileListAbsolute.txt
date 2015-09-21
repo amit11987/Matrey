@@ -10,3 +10,15 @@ F:\Maitry\Solution\Service\obj\Debug\Service.csprojResolveAssemblyReference.cach
 F:\Maitry\Solution\Service\obj\Debug\Service.dll
 F:\Maitry\Solution\Service\obj\Debug\Service.pdb
 F:\Maitry\Solution\Service\bin\Debug\System.Web.Mvc.dll
+F:\Matrey\Service\bin\Debug\Service.dll
+F:\Matrey\Service\bin\Debug\Service.pdb
+F:\Matrey\Service\bin\Debug\Model.dll
+F:\Matrey\Service\bin\Debug\Repository.dll
+F:\Matrey\Service\bin\Debug\EntityFramework.dll
+F:\Matrey\Service\bin\Debug\System.Web.Mvc.dll
+F:\Matrey\Service\bin\Debug\Model.pdb
+F:\Matrey\Service\bin\Debug\Repository.pdb
+F:\Matrey\Service\bin\Debug\EntityFramework.xml
+F:\Matrey\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+F:\Matrey\Service\obj\Debug\Service.dll
+F:\Matrey\Service\obj\Debug\Service.pdb

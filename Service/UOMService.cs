@@ -28,6 +28,7 @@ namespace Service
         public IEnumerable<UOM> GetAllByIsStandardUOM(bool ISStandardUOM)
         {
             return _UOMRepository.GetAllByIsStandardUOM(ISStandardUOM);
+           
         }
        
     }

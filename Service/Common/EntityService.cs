@@ -28,6 +28,7 @@ namespace Service
                 throw new ArgumentNullException("entity");
             }
             _repository.Add(entity);
+                
            return _unitOfWork.Commit();         
         }
 

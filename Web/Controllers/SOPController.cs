@@ -53,7 +53,7 @@ namespace Web.Controllers
                     sop.Formula = Convert.ToString(TempData["formula"]);
                     if (string.IsNullOrEmpty(sop.Formula))
                     {
-                        ModelState.AddModelError("", "Please insert Formula");
+                        ModelState.AddModelError("", "Please insert formula");
                         return View(sop);
                     }
                     if (SOPService.FindBy(s => s.SOPName.Trim() == sop.SOPName.Trim()).Count() > 0)

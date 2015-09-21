@@ -15,20 +15,19 @@ namespace Repository
         protected readonly IDbSet<T> _dbset;
 
         public GenericRepository(DbContext context)
-        {
+        {  
             _entities = context;
             _dbset = context.Set<T>();
         }
 
         public virtual IEnumerable<T> GetAll()
         {
-
             return _dbset.AsEnumerable<T>();
         }
 
         public IEnumerable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         {
-
+        
             IEnumerable<T> query = _dbset.Where(predicate).AsEnumerable(); 
             return query;
         }
@@ -50,7 +49,7 @@ namespace Repository
 
         public virtual int Save()
         {
-           return _entities.SaveChanges();
+            return _entities.SaveChanges();
         }
     }
 }
